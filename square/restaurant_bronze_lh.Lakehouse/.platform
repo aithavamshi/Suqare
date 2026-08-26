@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "restaurant_bronze_lh"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2786d8e3-0ada-936a-4edb-b27d9079c7ac"
+  }
+}
