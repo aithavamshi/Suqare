@@ -1,0 +1,257 @@
+table fact_order
+	lineageTag: 9fd8acfd-1c0f-4393-ac1c-d3b29911e903
+	sourceLineageTag: [gold].[fact_order]
+
+	column OrderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 05551f66-286b-40fd-ad5c-68e94d53bc6b
+		sourceLineageTag: OrderKey
+		summarizeBy: count
+		sourceColumn: OrderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareOrderID
+		dataType: string
+		lineageTag: 69a877aa-384d-44ee-9f3c-fb14b497548d
+		sourceLineageTag: SquareOrderID
+		summarizeBy: none
+		sourceColumn: SquareOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessOrderID
+		dataType: string
+		lineageTag: d3615b66-0a6d-415b-9680-3aeca3077124
+		sourceLineageTag: BusinessOrderID
+		summarizeBy: none
+		sourceColumn: BusinessOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a90948f7-2c15-434e-9f8f-9845c26562d0
+		sourceLineageTag: DateKey
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: bf0060e9-69b6-49f5-aafb-36f9abc92cef
+		sourceLineageTag: CustomerKey
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 69bc21dd-8554-455e-81d1-04d367946f83
+		sourceLineageTag: LocationKey
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderState
+		dataType: string
+		lineageTag: dcf0d380-85a3-4304-83d1-2e83167d105b
+		sourceLineageTag: OrderState
+		summarizeBy: none
+		sourceColumn: OrderState
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderVersion
+		dataType: int64
+		formatString: 0
+		lineageTag: 026dd29c-6b09-4b23-a1c4-da5e0aeae961
+		sourceLineageTag: OrderVersion
+		summarizeBy: sum
+		sourceColumn: OrderVersion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 129824ab-e05d-4b3c-8703-dfdd7705fdbb
+		sourceLineageTag: Currency
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0ecf6e94-bb06-4b9d-8d55-cdd79bb673bc
+		sourceLineageTag: CreatedAt
+		summarizeBy: none
+		sourceColumn: CreatedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f0358272-dc69-4ca2-af87-279cef49eb0c
+		sourceLineageTag: UpdatedAt
+		summarizeBy: none
+		sourceColumn: UpdatedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClosedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6e88921a-1a3a-40e7-b98b-d8a021b7ff6a
+		sourceLineageTag: ClosedAt
+		summarizeBy: none
+		sourceColumn: ClosedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: bf99a76d-877e-4724-8355-696afa0132ca
+		sourceLineageTag: TotalAmount
+		summarizeBy: sum
+		sourceColumn: TotalAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalTaxAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 8cd6dd9b-96d1-41c6-bb93-54dbc0fcf740
+		sourceLineageTag: TotalTaxAmount
+		summarizeBy: sum
+		sourceColumn: TotalTaxAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalDiscountAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 7406aeaa-6001-4fa2-bf10-91603dd06171
+		sourceLineageTag: TotalDiscountAmount
+		summarizeBy: sum
+		sourceColumn: TotalDiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalTipAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 3bdb5350-7306-46be-a196-1e31839ba77b
+		sourceLineageTag: TotalTipAmount
+		summarizeBy: sum
+		sourceColumn: TotalTipAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalServiceChargeAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 011d14c8-b9fa-4c5f-a5d5-a47dfea9c3de
+		sourceLineageTag: TotalServiceChargeAmount
+		summarizeBy: sum
+		sourceColumn: TotalServiceChargeAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalCardSurchargeAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: ad5179ec-4236-47b6-9f79-b1f6d172f061
+		sourceLineageTag: TotalCardSurchargeAmount
+		summarizeBy: sum
+		sourceColumn: TotalCardSurchargeAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetTotalAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 23af0eea-6797-4d75-b444-62f828e83ab9
+		sourceLineageTag: NetTotalAmount
+		summarizeBy: sum
+		sourceColumn: NetTotalAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetTaxAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 59256d57-7590-46b3-93da-f66a025be9ae
+		sourceLineageTag: NetTaxAmount
+		summarizeBy: sum
+		sourceColumn: NetTaxAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetDiscountAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 5927cdfe-279d-4e16-8acb-704ce24bdd6d
+		sourceLineageTag: NetDiscountAmount
+		summarizeBy: sum
+		sourceColumn: NetDiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetTipAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 21135286-75da-497b-b6bc-34877670b666
+		sourceLineageTag: NetTipAmount
+		summarizeBy: sum
+		sourceColumn: NetTipAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetServiceChargeAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 18c2bfcd-472a-4515-b6a6-7e9eec4eb120
+		sourceLineageTag: NetServiceChargeAmount
+		summarizeBy: sum
+		sourceColumn: NetServiceChargeAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetCardSurchargeAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ad74b4d-933a-4fc1-a1f3-121bdab42997
+		sourceLineageTag: NetCardSurchargeAmount
+		summarizeBy: sum
+		sourceColumn: NetCardSurchargeAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetAmountDue
+		dataType: int64
+		formatString: 0
+		lineageTag: 489661bf-a300-4020-a602-83ba70789f09
+		sourceLineageTag: NetAmountDue
+		summarizeBy: sum
+		sourceColumn: NetAmountDue
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_order = entity
+		mode: directLake
+		source
+			entityName: fact_order
+			schemaName: gold
+			expressionSource: 'DirectLake - restaurant_lh'
+

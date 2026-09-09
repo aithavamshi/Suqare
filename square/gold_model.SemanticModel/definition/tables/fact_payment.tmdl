@@ -1,0 +1,310 @@
+table fact_payment
+	lineageTag: 370f50c7-a532-4dec-97ed-218f2f3e516c
+	sourceLineageTag: [gold].[fact_payment]
+
+	column PaymentKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9290dad9-2b2c-4dc4-bf31-89748c4fe4d3
+		sourceLineageTag: PaymentKey
+		summarizeBy: count
+		sourceColumn: PaymentKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d5f7ebb7-b227-4a63-ab01-b5564c6fa162
+		sourceLineageTag: OrderKey
+		summarizeBy: count
+		sourceColumn: OrderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1856bd73-b2f5-41df-b067-2726d13c4d04
+		sourceLineageTag: DateKey
+		summarizeBy: count
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b40358e-cc85-450f-8245-767ff744a8d4
+		sourceLineageTag: CustomerKey
+		summarizeBy: count
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c610ae3c-2d2e-4492-8182-d5f911a179e2
+		sourceLineageTag: LocationKey
+		summarizeBy: count
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquarePaymentID
+		dataType: string
+		lineageTag: c7325d91-e03d-4b67-b883-39e25869263c
+		sourceLineageTag: SquarePaymentID
+		summarizeBy: none
+		sourceColumn: SquarePaymentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareOrderID
+		dataType: string
+		lineageTag: 3e41b1d1-5b42-4ea6-a899-e8095ae1a7dd
+		sourceLineageTag: SquareOrderID
+		summarizeBy: none
+		sourceColumn: SquareOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareCustomerID
+		dataType: string
+		lineageTag: d53e4ec5-c593-45bc-afd6-aef1c0d3bd35
+		sourceLineageTag: SquareCustomerID
+		summarizeBy: none
+		sourceColumn: SquareCustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: int64
+		formatString: 0
+		lineageTag: d98cb467-58f4-456a-a6fa-180a5b54afce
+		sourceLineageTag: Amount
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: ba9279ab-0fe7-4136-a025-d3e8576c3d04
+		sourceLineageTag: Currency
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 511a398d-3cef-4643-a32c-d7194cf08a3d
+		sourceLineageTag: TotalAmount
+		summarizeBy: sum
+		sourceColumn: TotalAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalCurrency
+		dataType: string
+		lineageTag: abd21bcc-b605-44c6-ad19-a2c50c37c16e
+		sourceLineageTag: TotalCurrency
+		summarizeBy: none
+		sourceColumn: TotalCurrency
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentStatus
+		dataType: string
+		lineageTag: 7a8dfc81-7d2a-485d-97c4-d98dd65554df
+		sourceLineageTag: PaymentStatus
+		summarizeBy: none
+		sourceColumn: PaymentStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentSourceType
+		dataType: string
+		lineageTag: 27f4aceb-1ab8-4d67-8b2d-0b5ca5b80ed2
+		sourceLineageTag: PaymentSourceType
+		summarizeBy: none
+		sourceColumn: PaymentSourceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6ef0ee88-48fb-4e52-86e3-001afc08a7ed
+		sourceLineageTag: CreatedAt
+		summarizeBy: none
+		sourceColumn: CreatedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4d734395-6645-41f5-9614-bef8bf216c26
+		sourceLineageTag: UpdatedAt
+		summarizeBy: none
+		sourceColumn: UpdatedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReceiptNumber
+		dataType: string
+		lineageTag: b278b85b-bc9d-4c6a-bad9-a19239902ceb
+		sourceLineageTag: ReceiptNumber
+		summarizeBy: none
+		sourceColumn: ReceiptNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExternalSource
+		dataType: string
+		lineageTag: 695e3f8c-0a66-47e9-9c97-3e99961b2ff4
+		sourceLineageTag: ExternalSource
+		summarizeBy: none
+		sourceColumn: ExternalSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExternalType
+		dataType: string
+		lineageTag: 7929a629-8910-4662-8d52-08a75743d142
+		sourceLineageTag: ExternalType
+		summarizeBy: none
+		sourceColumn: ExternalType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardBrand
+		dataType: string
+		lineageTag: 03ad8b8d-feac-4264-8546-08d78a9471d7
+		sourceLineageTag: CardBrand
+		summarizeBy: none
+		sourceColumn: CardBrand
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardType
+		dataType: string
+		lineageTag: 770f1f7e-1739-42ed-adb5-902283020da7
+		sourceLineageTag: CardType
+		summarizeBy: none
+		sourceColumn: CardType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardLast4
+		dataType: string
+		lineageTag: fad2af63-b1ac-4e99-9abe-dfd95cc9c109
+		sourceLineageTag: CardLast4
+		summarizeBy: none
+		sourceColumn: CardLast4
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardEntryMethod
+		dataType: string
+		lineageTag: 762ef805-cbd6-428c-bac7-6d01e0255b41
+		sourceLineageTag: CardEntryMethod
+		summarizeBy: none
+		sourceColumn: CardEntryMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardStatus
+		dataType: string
+		lineageTag: aaa87ef0-ad25-4e84-8105-07a5a4ef7cd9
+		sourceLineageTag: CardStatus
+		summarizeBy: none
+		sourceColumn: CardStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column AVSStatus
+		dataType: string
+		lineageTag: 46387e6b-f3a2-4188-ba99-2168221373f8
+		sourceLineageTag: AVSStatus
+		summarizeBy: none
+		sourceColumn: AVSStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column CVVStatus
+		dataType: string
+		lineageTag: 3fd0b3c1-19b5-44d4-8692-45ab414b6d7f
+		sourceLineageTag: CVVStatus
+		summarizeBy: none
+		sourceColumn: CVVStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column CashBuyerSuppliedAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e90c47d-2508-48f8-bcdc-1b786d46b6b9
+		sourceLineageTag: CashBuyerSuppliedAmount
+		summarizeBy: sum
+		sourceColumn: CashBuyerSuppliedAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column CashChangeBackAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 766a335e-8437-4eb7-82c7-1226cf065c10
+		sourceLineageTag: CashChangeBackAmount
+		summarizeBy: sum
+		sourceColumn: CashChangeBackAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column RiskLevel
+		dataType: string
+		lineageTag: b27e2584-601c-4fd4-b8cb-86ced71499ae
+		sourceLineageTag: RiskLevel
+		summarizeBy: none
+		sourceColumn: RiskLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApplicationID
+		dataType: string
+		lineageTag: 7d23e7f9-9431-484f-89bb-4f46faa376c4
+		sourceLineageTag: ApplicationID
+		summarizeBy: none
+		sourceColumn: ApplicationID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareProduct
+		dataType: string
+		lineageTag: 4b7c72fa-e91c-49ee-a474-ce162c271f26
+		sourceLineageTag: SquareProduct
+		summarizeBy: none
+		sourceColumn: SquareProduct
+
+		annotation SummarizationSetBy = Automatic
+
+	column VersionToken
+		dataType: string
+		lineageTag: ff8d8a0c-5089-4aaf-8a3e-dfe69d09e6f6
+		sourceLineageTag: VersionToken
+		summarizeBy: none
+		sourceColumn: VersionToken
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_payment = entity
+		mode: directLake
+		source
+			entityName: fact_payment
+			schemaName: gold
+			expressionSource: 'DirectLake - restaurant_lh'
+

@@ -1,0 +1,39 @@
+table gold_order_date_mapping
+	lineageTag: f2102251-2f3b-453e-b990-3cd9ecc02e53
+	sourceLineageTag: [gold].[gold_order_date_mapping]
+
+	column BusinessOrderID
+		dataType: string
+		lineageTag: 7e97cf3b-db03-4e43-b350-822f7d105d37
+		sourceLineageTag: BusinessOrderID
+		summarizeBy: none
+		sourceColumn: BusinessOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareOrderID
+		dataType: string
+		lineageTag: 3eb46049-1db1-45c9-be42-026f9b497072
+		sourceLineageTag: SquareOrderID
+		summarizeBy: none
+		sourceColumn: SquareOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportingOrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 05125e59-1ae0-4c2c-93e6-4fb89eaced3d
+		sourceLineageTag: ReportingOrderDate
+		summarizeBy: none
+		sourceColumn: ReportingOrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_order_date_mapping = entity
+		mode: directLake
+		source
+			entityName: gold_order_date_mapping
+			schemaName: gold
+			expressionSource: 'DirectLake - restaurant_lh'
+

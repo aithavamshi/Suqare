@@ -1,0 +1,158 @@
+table dim_location
+	lineageTag: 0c388873-0ef4-4eff-a6d6-b59f2ba552f5
+	sourceLineageTag: [gold].[dim_location]
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: dc51171d-fe69-450d-a3a9-8f9086c06e87
+		sourceLineageTag: LocationKey
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareLocationID
+		dataType: string
+		lineageTag: 4d738d11-6af5-461f-b21e-69be4c5e5daf
+		sourceLineageTag: SquareLocationID
+		summarizeBy: none
+		sourceColumn: SquareLocationID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationName
+		dataType: string
+		lineageTag: 4beb6660-4a93-4f98-b7fa-8c857ea05e4e
+		sourceLineageTag: LocationName
+		summarizeBy: none
+		sourceColumn: LocationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessName
+		dataType: string
+		lineageTag: 38f97fa2-53e9-4b04-aca0-ada467714c26
+		sourceLineageTag: BusinessName
+		summarizeBy: none
+		sourceColumn: BusinessName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationStatus
+		dataType: string
+		lineageTag: 03b6bd9c-2e2c-493d-8fef-489d3211283c
+		sourceLineageTag: LocationStatus
+		summarizeBy: none
+		sourceColumn: LocationStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationType
+		dataType: string
+		lineageTag: 89127b9f-c643-4a79-a7a5-d99c242f24f7
+		sourceLineageTag: LocationType
+		summarizeBy: none
+		sourceColumn: LocationType
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine1
+		dataType: string
+		lineageTag: 132c451a-4e19-4479-a720-06a7dccf2bae
+		sourceLineageTag: AddressLine1
+		summarizeBy: none
+		sourceColumn: AddressLine1
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: eb0dfc2a-671d-49a7-9dc5-269c5ba4807d
+		sourceLineageTag: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: f49ff26d-d7b7-4dcb-8c6f-b213d85ce4e4
+		sourceLineageTag: State
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: 5718a4ba-9e3b-4315-9c25-bedfe9099a4a
+		sourceLineageTag: PostalCode
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 24c5ffa0-a080-4589-a92c-8e7273ef9ac8
+		sourceLineageTag: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Timezone
+		dataType: string
+		lineageTag: 6300bb8f-d37b-4f63-80c6-323f96009f02
+		sourceLineageTag: Timezone
+		summarizeBy: none
+		sourceColumn: Timezone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 86baf1b0-61d2-4eaf-9186-22071fd9498e
+		sourceLineageTag: Currency
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column LanguageCode
+		dataType: string
+		lineageTag: d081ea5b-1a78-4c59-a35f-4d1b8947df67
+		sourceLineageTag: LanguageCode
+		summarizeBy: none
+		sourceColumn: LanguageCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7790f3ef-6eb0-43bb-8443-7f6047a36b51
+		sourceLineageTag: CreatedAt
+		summarizeBy: none
+		sourceColumn: CreatedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column IngestedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 85a2c531-a71d-4222-99a0-e5ce0ee33ae7
+		sourceLineageTag: IngestedAt
+		summarizeBy: none
+		sourceColumn: IngestedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_location = entity
+		mode: directLake
+		source
+			entityName: dim_location
+			schemaName: gold
+			expressionSource: 'DirectLake - restaurant_lh'
+

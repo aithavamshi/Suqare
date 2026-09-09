@@ -1,0 +1,222 @@
+table dim_product
+	lineageTag: ef327a29-ef73-4049-ae11-b13cea6a9a85
+	sourceLineageTag: [gold].[dim_product]
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e9d5a8f2-62a4-4d1b-9801-bc7e3cc75904
+		sourceLineageTag: ProductKey
+		summarizeBy: count
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareVariationID
+		dataType: string
+		lineageTag: d4fd016e-697c-4fb2-83ba-f7921dd65d24
+		sourceLineageTag: SquareVariationID
+		summarizeBy: none
+		sourceColumn: SquareVariationID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareItemID
+		dataType: string
+		lineageTag: 7b4e2cbd-2af6-4db5-8e0f-2a812db2af37
+		sourceLineageTag: SquareItemID
+		summarizeBy: none
+		sourceColumn: SquareItemID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: a88ef8a2-15b6-4507-bb70-c60a77c64916
+		sourceLineageTag: ItemName
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 4d862ad1-7c6f-4382-b6db-65a3e213609f
+		sourceLineageTag: Description
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductType
+		dataType: string
+		lineageTag: b8e8c63b-d4f9-47b2-8ca8-d3f04a2b12e4
+		sourceLineageTag: ProductType
+		summarizeBy: none
+		sourceColumn: ProductType
+
+		annotation SummarizationSetBy = Automatic
+
+	column VariationName
+		dataType: string
+		lineageTag: bcf97e7b-96bd-4953-b414-b29121ab2cfa
+		sourceLineageTag: VariationName
+		summarizeBy: none
+		sourceColumn: VariationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKU
+		dataType: string
+		lineageTag: b2987991-485d-440f-98ea-e6efec2f8f7f
+		sourceLineageTag: SKU
+		summarizeBy: none
+		sourceColumn: SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		formatString: 0
+		lineageTag: 0dcf93d9-a6a3-463f-940c-0c773830f285
+		sourceLineageTag: Ordinal
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column PriceAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 98ea646c-5c38-489d-b15e-02d5008fdd18
+		sourceLineageTag: PriceAmount
+		summarizeBy: sum
+		sourceColumn: PriceAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 246423df-dd50-478a-a98f-fb25adb7920d
+		sourceLineageTag: Currency
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column PricingType
+		dataType: string
+		lineageTag: b7984a43-12ab-4581-8602-33909352bf68
+		sourceLineageTag: PricingType
+		summarizeBy: none
+		sourceColumn: PricingType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sellable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b84abe31-a919-487c-b7ec-38c2d67573f6
+		sourceLineageTag: Sellable
+		summarizeBy: none
+		sourceColumn: Sellable
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stockable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 926fe400-6eea-423e-8157-59c3677b4d42
+		sourceLineageTag: Stockable
+		summarizeBy: none
+		sourceColumn: Stockable
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsArchived
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6484cceb-67ee-4176-980a-ddf2ad4b0ce1
+		sourceLineageTag: IsArchived
+		summarizeBy: none
+		sourceColumn: IsArchived
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsTaxable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 27431f1b-adf2-4068-b0d9-b27819a24a2f
+		sourceLineageTag: IsTaxable
+		summarizeBy: none
+		sourceColumn: IsTaxable
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsVariationDeleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a6467ad8-2db4-4455-bf78-c7a96d97954f
+		sourceLineageTag: IsVariationDeleted
+		summarizeBy: none
+		sourceColumn: IsVariationDeleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsItemDeleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 01244370-8cdd-4883-a0e5-497fa45ce1c3
+		sourceLineageTag: IsItemDeleted
+		summarizeBy: none
+		sourceColumn: IsItemDeleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column PresentAtAllLocations
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 73909c31-47ac-4fa9-bbee-b5cc1cb94aa5
+		sourceLineageTag: PresentAtAllLocations
+		summarizeBy: none
+		sourceColumn: PresentAtAllLocations
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9c29a0dc-831e-452c-b63e-1677aa7d74a2
+		sourceLineageTag: CreatedAt
+		summarizeBy: none
+		sourceColumn: CreatedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9991f97c-eb00-4b69-ae1f-3d9a7b7a7bf4
+		sourceLineageTag: UpdatedAt
+		summarizeBy: none
+		sourceColumn: UpdatedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Version
+		dataType: int64
+		formatString: 0
+		lineageTag: 0080792d-00a2-4092-8efc-e61e906b9288
+		sourceLineageTag: Version
+		summarizeBy: sum
+		sourceColumn: Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_product = entity
+		mode: directLake
+		source
+			entityName: dim_product
+			schemaName: gold
+			expressionSource: 'DirectLake - restaurant_lh'
+

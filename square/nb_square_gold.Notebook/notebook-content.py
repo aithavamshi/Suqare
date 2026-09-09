@@ -3133,3 +3133,430 @@ difference.show(truncate=False)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+from pyspark.sql import functions as F
+
+print("=" * 110)
+print("FINAL GOLD DATA MODEL VALIDATION")
+print("=" * 110)
+
+# ============================================================
+# DIMENSIONS
+# ============================================================
+
+dim_date = spark.table("gold.dim_date")
+
+dim_customer = spark.table("gold.dim_customer")
+
+dim_product = spark.table("gold.dim_product")
+
+dim_location = spark.table("gold.dim_location")
+
+
+# ============================================================
+# FACTS
+# ============================================================
+
+fact_order = spark.table("gold.fact_order")
+
+fact_sales = spark.table("gold.fact_sales")
+
+fact_payment = spark.table("gold.fact_payment")
+
+fact_inventory = spark.table("gold.fact_inventory")
+
+
+print()
+print("=" * 110)
+print("GOLD TABLE ROW COUNTS")
+print("=" * 110)
+
+print("dim_date       :", dim_date.count())
+print("dim_customer   :", dim_customer.count())
+print("dim_product    :", dim_product.count())
+print("dim_location   :", dim_location.count())
+
+print()
+
+print("fact_order     :", fact_order.count())
+print("fact_sales     :", fact_sales.count())
+print("fact_payment   :", fact_payment.count())
+print("fact_inventory :", fact_inventory.count())   
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+print()
+print("=" * 110)
+print("DIMENSION PRIMARY KEY VALIDATION")
+print("=" * 110)
+
+
+def validate_dimension_key(df, table_name, key_column):
+
+    total_rows = df.count()
+
+    duplicate_keys = (
+        df
+        .groupBy(key_column)
+        .count()
+        .filter(F.col("count") > 1)
+        .count()
+    )
+
+    null_keys = (
+        df
+        .filter(F.col(key_column).isNull())
+        .count()
+    )
+
+    print()
+    print(table_name)
+    print("-" * 60)
+    print("Total rows     :", total_rows)
+    print("Duplicate keys :", duplicate_keys)
+    print("NULL keys      :", null_keys)
+
+
+validate_dimension_key(
+    dim_date,
+    "gold.dim_date",
+    "DateKey"
+)
+
+validate_dimension_key(
+    dim_customer,
+    "gold.dim_customer",
+    "CustomerKey"
+)
+
+validate_dimension_key(
+    dim_product,
+    "gold.dim_product",
+    "ProductKey"
+)
+
+validate_dimension_key(
+    dim_location,
+    "gold.dim_location",
+    "LocationKey"
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+def validate_relationship(
+    fact_df,
+    dim_df,
+    fact_name,
+    dim_name,
+    fact_key,
+    dim_key
+):
+
+    total_fact_rows = fact_df.count()
+
+    null_foreign_keys = (
+        fact_df
+        .filter(
+            F.col(fact_key).isNull()
+        )
+        .count()
+    )
+
+    orphan_records = (
+        fact_df.alias("f")
+        .join(
+            dim_df.alias("d"),
+            F.col(f"f.{fact_key}") ==
+            F.col(f"d.{dim_key}"),
+            "left_anti"
+        )
+        .count()
+    )
+
+    print()
+    print("-" * 110)
+    print(f"{fact_name} → {dim_name}")
+    print("-" * 110)
+
+    print("Fact rows         :", total_fact_rows)
+    print("NULL Foreign Keys :", null_foreign_keys)
+    print("Orphan Records    :", orphan_records)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+print()
+print("=" * 110)
+print("FACT ORDER RELATIONSHIPS")
+print("=" * 110)
+
+
+validate_relationship(
+    fact_order,
+    dim_date,
+    "fact_order",
+    "dim_date",
+    "DateKey",
+    "DateKey"
+)
+
+
+validate_relationship(
+    fact_order,
+    dim_customer,
+    "fact_order",
+    "dim_customer",
+    "CustomerKey",
+    "CustomerKey"
+)
+
+
+validate_relationship(
+    fact_order,
+    dim_location,
+    "fact_order",
+    "dim_location",
+    "LocationKey",
+    "LocationKey"
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+print()
+print("=" * 110)
+print("FACT SALES RELATIONSHIPS")
+print("=" * 110)
+
+
+validate_relationship(
+    fact_sales,
+    dim_date,
+    "fact_sales",
+    "dim_date",
+    "DateKey",
+    "DateKey"
+)
+
+
+validate_relationship(
+    fact_sales,
+    dim_customer,
+    "fact_sales",
+    "dim_customer",
+    "CustomerKey",
+    "CustomerKey"
+)
+
+
+validate_relationship(
+    fact_sales,
+    dim_product,
+    "fact_sales",
+    "dim_product",
+    "ProductKey",
+    "ProductKey"
+)
+
+
+validate_relationship(
+    fact_sales,
+    dim_location,
+    "fact_sales",
+    "dim_location",
+    "LocationKey",
+    "LocationKey"
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+print()
+print("=" * 110)
+print("FACT PAYMENT RELATIONSHIPS")
+print("=" * 110)
+
+
+validate_relationship(
+    fact_payment,
+    dim_date,
+    "fact_payment",
+    "dim_date",
+    "DateKey",
+    "DateKey"
+)
+
+
+validate_relationship(
+    fact_payment,
+    dim_customer,
+    "fact_payment",
+    "dim_customer",
+    "CustomerKey",
+    "CustomerKey"
+)
+
+
+validate_relationship(
+    fact_payment,
+    dim_location,
+    "fact_payment",
+    "dim_location",
+    "LocationKey",
+    "LocationKey"
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+print()
+print("=" * 110)
+print("FACT INVENTORY RELATIONSHIPS")
+print("=" * 110)
+
+
+validate_relationship(
+    fact_inventory,
+    dim_date,
+    "fact_inventory",
+    "dim_date",
+    "DateKey",
+    "DateKey"
+)
+
+
+validate_relationship(
+    fact_inventory,
+    dim_product,
+    "fact_inventory",
+    "dim_product",
+    "ProductKey",
+    "ProductKey"
+)
+
+
+validate_relationship(
+    fact_inventory,
+    dim_location,
+    "fact_inventory",
+    "dim_location",
+    "LocationKey",
+    "LocationKey"
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+print()
+print("=" * 110)
+print("FACT PRIMARY KEY VALIDATION")
+print("=" * 110)
+
+
+def validate_fact_key(df, table_name, key_column):
+
+    total_rows = df.count()
+
+    duplicate_keys = (
+        df
+        .groupBy(key_column)
+        .count()
+        .filter(F.col("count") > 1)
+        .count()
+    )
+
+    null_keys = (
+        df
+        .filter(
+            F.col(key_column).isNull()
+        )
+        .count()
+    )
+
+    print()
+    print(table_name)
+    print("-" * 60)
+    print("Total rows     :", total_rows)
+    print("Duplicate keys :", duplicate_keys)
+    print("NULL keys      :", null_keys)
+
+
+validate_fact_key(
+    fact_order,
+    "gold.fact_order",
+    "OrderKey"
+)
+
+
+validate_fact_key(
+    fact_sales,
+    "gold.fact_sales",
+    "SalesKey"
+)
+
+
+validate_fact_key(
+    fact_payment,
+    "gold.fact_payment",
+    "PaymentKey"
+)
+
+
+validate_fact_key(
+    fact_inventory,
+    "gold.fact_inventory",
+    "InventoryKey"
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }

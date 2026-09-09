@@ -1,0 +1,117 @@
+table fact_inventory
+	lineageTag: d6692d42-3ff7-4094-9c6c-1c61f8fd1665
+	sourceLineageTag: [gold].[fact_inventory]
+
+	column InventoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 25a279c6-1f16-46e4-90b8-c2074a651111
+		sourceLineageTag: InventoryKey
+		summarizeBy: count
+		sourceColumn: InventoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b8fc51e1-cf04-45d3-ba63-49debcf20048
+		sourceLineageTag: DateKey
+		summarizeBy: count
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: fb967f31-0964-4803-a145-04f6cbe8290d
+		sourceLineageTag: ProductKey
+		summarizeBy: count
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 05934c27-c20f-4cf0-89be-a1e09838adb2
+		sourceLineageTag: LocationKey
+		summarizeBy: count
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareVariationID
+		dataType: string
+		lineageTag: 0263f627-9e4a-48fd-a44e-83b14cc024a0
+		sourceLineageTag: SquareVariationID
+		summarizeBy: none
+		sourceColumn: SquareVariationID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareLocationID
+		dataType: string
+		lineageTag: f9c9b24b-0151-4f42-a384-3216db9c29d1
+		sourceLineageTag: SquareLocationID
+		summarizeBy: none
+		sourceColumn: SquareLocationID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CatalogObjectType
+		dataType: string
+		lineageTag: fdec33fb-952c-4d51-a420-8fad5d2a9aaf
+		sourceLineageTag: CatalogObjectType
+		summarizeBy: none
+		sourceColumn: CatalogObjectType
+
+		annotation SummarizationSetBy = Automatic
+
+	column InventoryState
+		dataType: string
+		lineageTag: b859f33b-ca88-4748-bae4-a660efaf32d6
+		sourceLineageTag: InventoryState
+		summarizeBy: none
+		sourceColumn: InventoryState
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 16ed07e2-c406-474b-9c25-4282dc132b67
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column InventoryDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6fd82532-1bee-4109-9a73-d388e17265eb
+		sourceLineageTag: InventoryDate
+		summarizeBy: none
+		sourceColumn: InventoryDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalculatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3c906a29-76e8-455f-ab31-be80dadebd21
+		sourceLineageTag: CalculatedAt
+		summarizeBy: none
+		sourceColumn: CalculatedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_inventory = entity
+		mode: directLake
+		source
+			entityName: fact_inventory
+			schemaName: gold
+			expressionSource: 'DirectLake - restaurant_lh'
+

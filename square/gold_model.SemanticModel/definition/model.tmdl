@@ -1,0 +1,24 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DirectLake - restaurant_lh"]
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table fact_inventory
+ref table gold_order_date_mapping
+ref table fact_order
+ref table dim_customer
+ref table dim_date
+ref table fact_sales
+ref table fact_payment
+ref table dim_product
+ref table dim_location
+

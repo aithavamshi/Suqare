@@ -1,0 +1,12 @@
+relationship 07774a97-c35b-b2aa-22e2-fcea76ad2acc
+	fromColumn: fact_order.CustomerKey
+	toColumn: dim_customer.CustomerKey
+
+relationship a05b4e73-2eb1-cba4-0899-7116a3b3a6c1
+	fromColumn: fact_order.LocationKey
+	toColumn: dim_location.LocationKey
+
+relationship 05f4b6f4-4923-c9da-efa3-4a265a7a4130
+	fromColumn: fact_order.DateKey
+	toColumn: dim_date.DateKey
+

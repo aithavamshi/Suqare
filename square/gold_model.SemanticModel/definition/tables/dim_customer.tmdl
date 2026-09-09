@@ -1,0 +1,140 @@
+table dim_customer
+	lineageTag: a5ad9aa4-dc5a-4252-8d8f-e7c93b07530a
+	sourceLineageTag: [gold].[dim_customer]
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 85cbe112-0750-420c-9158-2c7ea006b098
+		sourceLineageTag: CustomerKey
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SquareCustomerID
+		dataType: string
+		lineageTag: 21eedd91-f493-4286-9bde-0f58f3c69f1b
+		sourceLineageTag: SquareCustomerID
+		summarizeBy: none
+		sourceColumn: SquareCustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReferenceID
+		dataType: string
+		lineageTag: b1cd9caf-0a24-4975-8b26-7f514977b06f
+		sourceLineageTag: ReferenceID
+		summarizeBy: none
+		sourceColumn: ReferenceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 1cdced88-a57e-497d-a04b-6886a91871b5
+		sourceLineageTag: CustomerName
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column GivenName
+		dataType: string
+		lineageTag: db6f6894-10fb-4349-8676-a33aae530931
+		sourceLineageTag: GivenName
+		summarizeBy: none
+		sourceColumn: GivenName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FamilyName
+		dataType: string
+		lineageTag: e8fb143c-b8c8-4d8c-889b-d611b46fabdb
+		sourceLineageTag: FamilyName
+		summarizeBy: none
+		sourceColumn: FamilyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmailAddress
+		dataType: string
+		lineageTag: d425eefe-14f8-4353-a6a5-b53eb3450eeb
+		sourceLineageTag: EmailAddress
+		summarizeBy: none
+		sourceColumn: EmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhoneNumber
+		dataType: string
+		lineageTag: 73419d86-fd99-4330-9856-3a01bbd9d781
+		sourceLineageTag: PhoneNumber
+		summarizeBy: none
+		sourceColumn: PhoneNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c967e6a2-ca99-41f6-bb24-ed180d058a6c
+		sourceLineageTag: CreatedAt
+		summarizeBy: none
+		sourceColumn: CreatedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 12aa8eca-433d-46bd-b8be-7e073493fcf6
+		sourceLineageTag: UpdatedAt
+		summarizeBy: none
+		sourceColumn: UpdatedAt
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressDistrict
+		dataType: string
+		lineageTag: 7df53fe0-9566-4ba2-9e76-e9054e7631cf
+		sourceLineageTag: AddressDistrict
+		summarizeBy: none
+		sourceColumn: AddressDistrict
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLocality
+		dataType: string
+		lineageTag: cb122ed7-a6de-4f80-82a3-89b76f5033ff
+		sourceLineageTag: AddressLocality
+		summarizeBy: none
+		sourceColumn: AddressLocality
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressPostalCode
+		dataType: string
+		lineageTag: 793ecaf3-5f6f-4796-8d53-ee02cbe19d29
+		sourceLineageTag: AddressPostalCode
+		summarizeBy: none
+		sourceColumn: AddressPostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressCountry
+		dataType: string
+		lineageTag: cb36d7c5-8955-4aef-be3f-af11017d9961
+		sourceLineageTag: AddressCountry
+		summarizeBy: none
+		sourceColumn: AddressCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customer = entity
+		mode: directLake
+		source
+			entityName: dim_customer
+			schemaName: gold
+			expressionSource: 'DirectLake - restaurant_lh'
+
