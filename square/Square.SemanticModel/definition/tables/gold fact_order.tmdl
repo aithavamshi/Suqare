@@ -1,0 +1,280 @@
+/// Order-level sales information used to analyze orders and order values.
+table 'gold fact_order'
+	lineageTag: a8df57fe-70ee-462d-b500-9ae2c7019d20
+
+	/// Unique key for each order
+	column order_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 03b38138-6d18-4fc5-8803-33773b0e2859
+		summarizeBy: count
+		sourceColumn: order_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique order id from Square
+	column square_order_id
+		dataType: string
+		lineageTag: f3e682e3-e8d6-44e0-9d30-97fd8ddc7188
+		summarizeBy: none
+		sourceColumn: square_order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Business order identifier
+	column business_order_id
+		dataType: string
+		lineageTag: 3f8f11b2-b075-4106-bd94-c16a526b3c66
+		summarizeBy: none
+		sourceColumn: business_order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the reporting date
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f587c1c-9e1e-434c-8a7e-866fe95998f1
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the customer who placed the order
+	column customer_key
+		dataType: int64
+		formatString: 0
+		lineageTag: d017a932-f1a7-408c-808e-c03b4eae9773
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the location where the order was placed
+	column location_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 88a216e9-b602-4ce7-b348-13f6e74f21e1
+		summarizeBy: none
+		sourceColumn: location_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Current state of the order
+	column order_state
+		dataType: string
+		lineageTag: dc148df9-e75b-468f-b878-757b356bdde1
+		summarizeBy: none
+		sourceColumn: order_state
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Version number of the order
+	column order_version
+		dataType: int64
+		formatString: 0
+		lineageTag: 53aa4beb-1a56-4c61-be0c-ab88e02847e3
+		summarizeBy: sum
+		sourceColumn: order_version
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Currency of the order
+	column currency
+		dataType: string
+		lineageTag: 277cf1dc-9408-49f9-9242-ad6d47fe2aae
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the order was created
+	/// 
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: af620a5b-6590-4e01-abff-4f16ea869229
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: 3ffdf89a-56ee-473b-a6e0-e26e7f53d66c
+			defaultHierarchy: LocalDateTable_2f8c2486-5022-4c47-8d30-9c0b0a2f7101.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the order was last updated
+	/// 
+	column updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5ff14dc5-16e7-4438-adfe-2b6e578c4b7c
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		variation Variation
+			isDefault
+			relationship: 684f4527-0f14-40d6-ad0d-446b6893591f
+			defaultHierarchy: LocalDateTable_05c370bc-5fb3-4c24-b73c-d7709563dad9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the order was closed
+	column closed_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9e2df9ea-d370-401e-a113-1ec3337f7912
+		summarizeBy: none
+		sourceColumn: closed_at
+
+		variation Variation
+			isDefault
+			relationship: b491a0c7-3d27-48de-956b-6a56f2c23c37
+			defaultHierarchy: LocalDateTable_c86a8150-28ee-48b9-b65f-cf19c45d5fa4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total amount of the order
+	column total_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c65599e-22c5-4e50-876a-c97339e5ebc2
+		summarizeBy: sum
+		sourceColumn: total_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total tax amount on the order
+	column total_tax_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f24bd24-a7a7-4e8e-b6eb-eb920a049f35
+		summarizeBy: sum
+		sourceColumn: total_tax_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total discount amount on the order
+	column total_discount_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 34ceb13b-c1a7-4af8-ac02-89d958764925
+		summarizeBy: sum
+		sourceColumn: total_discount_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total tip amount on the order
+	column total_tip_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 763b30f2-3915-44fc-a4a2-808187264d21
+		summarizeBy: sum
+		sourceColumn: total_tip_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total service charge amount on the order
+	column total_service_charge_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: ecf5b1e6-0a7c-43c5-9931-944b80314414
+		summarizeBy: sum
+		sourceColumn: total_service_charge_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total card surcharge amount on the order
+	column total_card_surcharge_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d12e620-a645-48c7-b82b-d709c778b57e
+		summarizeBy: sum
+		sourceColumn: total_card_surcharge_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Net total amount of the order
+	column net_total_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: ad7ece39-fa08-46c4-8af5-93b08db993a6
+		summarizeBy: sum
+		sourceColumn: net_total_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Net tax amount of the order
+	/// 
+	column net_tax_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 01ad7128-a6fe-4624-8af3-697c2a3f4727
+		summarizeBy: sum
+		sourceColumn: net_tax_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Net discount amount of the order
+	column net_discount_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 4845ee35-4edb-46ea-8b4a-795b5fb33d2b
+		summarizeBy: sum
+		sourceColumn: net_discount_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Net tip amount of the order
+	column net_tip_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 8333804c-b602-4de0-8b07-422070571a9f
+		summarizeBy: sum
+		sourceColumn: net_tip_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Net service charge amount of the order
+	column net_service_charge_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: f6313356-6a9b-4e6c-842e-63af2cfb9ce3
+		summarizeBy: sum
+		sourceColumn: net_service_charge_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Net card surcharge amount of the order
+	column net_card_surcharge_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 67c4bc4c-8be2-4f3e-a206-5ae40fef9c3b
+		summarizeBy: sum
+		sourceColumn: net_card_surcharge_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Remaining amount due for the order
+	column net_amount_due
+		dataType: int64
+		formatString: 0
+		lineageTag: b056035a-332b-4677-9d18-8565254863ba
+		summarizeBy: sum
+		sourceColumn: net_amount_due
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold fact_order' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ivxrdaxcdssudi2fda4ebtbpl4-2f32cyze2wru3k3u3jw4pig7ja.datawarehouse.fabric.microsoft.com", "restaurant_lh"),
+				    gold_fact_order = Source{[Schema="gold",Item="fact_order"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_fact_order,{{"BusinessOrderID", "business_order_id"}, {"ClosedAt", "closed_at"}, {"CreatedAt", "created_at"}, {"Currency", "currency"}, {"CustomerKey", "customer_key"}, {"DateKey", "date_key"}, {"LocationKey", "location_key"}, {"NetAmountDue", "net_amount_due"}, {"NetCardSurchargeAmount", "net_card_surcharge_amount"}, {"NetDiscountAmount", "net_discount_amount"}, {"NetServiceChargeAmount", "net_service_charge_amount"}, {"NetTaxAmount", "net_tax_amount"}, {"NetTipAmount", "net_tip_amount"}, {"NetTotalAmount", "net_total_amount"}, {"OrderKey", "order_key"}, {"OrderState", "order_state"}, {"OrderVersion", "order_version"}, {"SquareOrderID", "square_order_id"}, {"TotalAmount", "total_amount"}, {"TotalCardSurchargeAmount", "total_card_surcharge_amount"}, {"TotalDiscountAmount", "total_discount_amount"}, {"TotalServiceChargeAmount", "total_service_charge_amount"}, {"TotalTaxAmount", "total_tax_amount"}, {"TotalTipAmount", "total_tip_amount"}, {"UpdatedAt", "updated_at"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

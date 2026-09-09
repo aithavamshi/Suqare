@@ -1,0 +1,239 @@
+/// Order line sales information used to analyze products, quantities, and sales amounts.
+table 'gold fact_sales'
+	lineageTag: 91eb75fd-7614-436a-af39-124c5596d8e7
+
+	/// Unique key for each sales line
+	column sales_key
+		dataType: int64
+		formatString: 0
+		lineageTag: bc93ab87-a838-488a-9065-7923b8915f6b
+		summarizeBy: count
+		sourceColumn: sales_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the related order
+	column order_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 7fdb9cd0-71a5-47d4-90e4-9434cb8329c7
+		summarizeBy: count
+		sourceColumn: order_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the reporting date
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 6eb622c2-b145-4e8b-8b88-cac17bf92157
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the customer
+	column customer_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 55360851-5847-4e05-bbda-4d2e16ef84b8
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the product variation
+	column product_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 761c43fc-adc7-4ddf-a1c0-28316b6a0691
+		summarizeBy: count
+		sourceColumn: product_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the business location
+	column location_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 8701b37c-f85f-4a4c-a82d-0253b5155690
+		summarizeBy: none
+		sourceColumn: location_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique order id from Square
+	column square_order_id
+		dataType: string
+		lineageTag: a71925bc-5034-4644-abfd-1e1256301b89
+		summarizeBy: none
+		sourceColumn: square_order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Business order identifier
+	column business_order_id
+		dataType: string
+		lineageTag: 5e38409a-0a8f-44e1-b732-49ea6b2716a5
+		summarizeBy: none
+		sourceColumn: business_order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique identifier for the order line
+	column square_order_line_id
+		dataType: string
+		lineageTag: f802a87f-18d8-4b15-bb0b-c2e2e1445211
+		summarizeBy: none
+		sourceColumn: square_order_line_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique product variation id from Square
+	column square_variation_id
+		dataType: string
+		lineageTag: b9350b7f-4f3b-4e27-b119-787d2dc7b82d
+		summarizeBy: none
+		sourceColumn: square_variation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Name of the product
+	column item_name
+		dataType: string
+		lineageTag: a309d7f5-f456-4ffe-8aac-313015fd6932
+		summarizeBy: none
+		sourceColumn: item_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Name of the product variation
+	column variation_name
+		dataType: string
+		lineageTag: 8a4874c4-0172-491b-8660-aed06b631e46
+		summarizeBy: none
+		sourceColumn: variation_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Type of item in the order
+	column item_type
+		dataType: string
+		lineageTag: 5a9f9581-2b32-4f47-a7b3-9f252741edce
+		summarizeBy: none
+		sourceColumn: item_type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Quantity of the product sold
+	column quantity
+		dataType: double
+		lineageTag: a16b92dd-3113-484f-af36-c84cc85f0ce3
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Price of the each item
+	column unit_price
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bbb5641-bc33-4a42-967a-cbfd5935cac5
+		summarizeBy: sum
+		sourceColumn: unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Gross sales amount before deductions
+	column gross_sales_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fd92a28-bbec-4965-9542-e0c60d79b060
+		summarizeBy: sum
+		sourceColumn: gross_sales_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Discount amount applied to the sale
+	column discount_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d6b49d7-8777-4650-b2d5-3c939a939146
+		summarizeBy: sum
+		sourceColumn: discount_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Tax amount applied to the sale
+	column tax_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c51515a-5565-480e-b585-7ccb69c52907
+		summarizeBy: sum
+		sourceColumn: tax_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Service charge applied to the sale
+	column service_charge_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 869f74bc-e2af-4dbf-89c0-faff97eaa887
+		summarizeBy: sum
+		sourceColumn: service_charge_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Card surcharge applied to the sale
+	column card_surcharge_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: cf8274e9-1165-46af-bab3-9094b7eae338
+		summarizeBy: sum
+		sourceColumn: card_surcharge_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total amount for the sales line
+	column total_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: b1c5ae30-561b-4fcd-ac88-e4af43ea723b
+		summarizeBy: sum
+		sourceColumn: total_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total price of the product variation
+	column variation_total_price_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 41571c92-2256-4fbe-9d39-1786e985b211
+		summarizeBy: sum
+		sourceColumn: variation_total_price_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Currency of the sale
+	column currency
+		dataType: string
+		lineageTag: f1482ac7-33c5-4aad-8eb5-b7533fe21af1
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold fact_sales' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ivxrdaxcdssudi2fda4ebtbpl4-2f32cyze2wru3k3u3jw4pig7ja.datawarehouse.fabric.microsoft.com", "restaurant_lh"),
+				    gold_fact_sales = Source{[Schema="gold",Item="fact_sales"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_fact_sales,{{"BusinessOrderID", "business_order_id"}, {"CardSurchargeAmount", "card_surcharge_amount"}, {"Currency", "currency"}, {"CustomerKey", "customer_key"}, {"DateKey", "date_key"}, {"DiscountAmount", "discount_amount"}, {"GrossSalesAmount", "gross_sales_amount"}, {"ItemName", "item_name"}, {"ItemType", "item_type"}, {"LocationKey", "location_key"}, {"OrderKey", "order_key"}, {"ProductKey", "product_key"}, {"Quantity", "quantity"}, {"SalesKey", "sales_key"}, {"ServiceChargeAmount", "service_charge_amount"}, {"SquareOrderID", "square_order_id"}, {"SquareOrderLineID", "square_order_line_id"}, {"SquareVariationID", "square_variation_id"}, {"TaxAmount", "tax_amount"}, {"TotalAmount", "total_amount"}, {"UnitPrice", "unit_price"}, {"VariationName", "variation_name"}, {"VariationTotalPriceAmount", "variation_total_price_amount"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

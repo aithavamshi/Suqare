@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "975485f937629985e05b",
+  "position": {
+    "x": 463.30434782608694,
+    "y": 43.826086956521735,
+    "z": 10000,
+    "height": 115.26625236603628,
+    "width": 808.92209249736175,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Customer & Payment Analysis",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "40pt",
+                      "color": "#2d2d2d"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

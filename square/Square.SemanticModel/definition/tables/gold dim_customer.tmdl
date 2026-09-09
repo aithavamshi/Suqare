@@ -1,0 +1,155 @@
+/// Customer information used to analyze customer activity and sales.
+table 'gold dim_customer'
+	lineageTag: ec02a28c-a904-4b43-b7d3-dd8a9efe0287
+
+	/// Unique key for each customer
+	column customer_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 42fe294b-8f83-48aa-9d84-9606a3403ecf
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique customer id from square
+	column square_customerI_id
+		dataType: string
+		lineageTag: 628a2d17-06ea-4911-8f12-5f85aeab6c7b
+		summarizeBy: none
+		sourceColumn: square_customerI_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Business reference id for the customer
+	column reference_id
+		dataType: string
+		lineageTag: 758592df-d0a2-4fa4-9ea6-e98b35ed7e74
+		summarizeBy: none
+		sourceColumn: reference_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Full name of the customer
+	column customer_name
+		dataType: string
+		lineageTag: 69288929-50f8-472c-9f02-e00d32e51fbf
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// First name of the customer
+	column given_name
+		dataType: string
+		lineageTag: 4e0821cb-b4b3-4793-8a9f-0cbbaab824a0
+		summarizeBy: none
+		sourceColumn: given_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Last name of the customer
+	column family_name
+		dataType: string
+		lineageTag: d01e22c3-902d-45da-81e6-3346b3b7e1e6
+		summarizeBy: none
+		sourceColumn: family_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Email address of the customer
+	column email_address
+		dataType: string
+		lineageTag: 51bd948f-f9e0-41eb-9c1f-6f8c4614fe80
+		summarizeBy: none
+		sourceColumn: email_address
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Phone number of the customer
+	column phone_number
+		dataType: string
+		lineageTag: 973349e2-392f-4b97-98ba-99e77232a2d5
+		summarizeBy: none
+		sourceColumn: phone_number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the customer was created
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b731ffce-95f5-4bb4-8012-ce74e8ed75e7
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: 797780b8-f37c-49b7-8ec5-f405ef5ecfcb
+			defaultHierarchy: LocalDateTable_eec08734-00da-49f6-8b06-eacf37934c96.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the customer was last updated
+	column updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 350691c4-a3df-481d-90f3-796286629d34
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		variation Variation
+			isDefault
+			relationship: d5401304-f19c-45d8-ba50-a0a874e7e134
+			defaultHierarchy: LocalDateTable_9158f51c-b742-41d3-8411-cffa174535dc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// State or district of the customer
+	column address_district
+		dataType: string
+		lineageTag: 1808856e-c70f-4a8e-bb6e-aaebd3fc955e
+		summarizeBy: none
+		sourceColumn: address_district
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Locality of the customer
+	column address_locality
+		dataType: string
+		lineageTag: c38aa660-b1e3-4f4c-b648-b4ee9a0aaf1a
+		summarizeBy: none
+		sourceColumn: address_locality
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Postal code of the customer
+	column address_postalCode
+		dataType: string
+		lineageTag: ba9aa421-de15-42ec-b7a5-59334949c862
+		summarizeBy: none
+		sourceColumn: address_postalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Country of the customer
+	column address_country
+		dataType: string
+		lineageTag: 9d4898ac-bc7b-4f0b-b093-ecd1f633d93b
+		summarizeBy: none
+		sourceColumn: address_country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_customer' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ivxrdaxcdssudi2fda4ebtbpl4-2f32cyze2wru3k3u3jw4pig7ja.datawarehouse.fabric.microsoft.com", "restaurant_lh"),
+				    gold_dim_customer = Source{[Schema="gold",Item="dim_customer"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_dim_customer,{{"AddressCountry", "address_country"}, {"AddressDistrict", "address_district"}, {"AddressLocality", "address_locality"}, {"AddressPostalCode", "address_postalCode"}, {"CreatedAt", "created_at"}, {"CustomerKey", "customer_key"}, {"CustomerName", "customer_name"}, {"EmailAddress", "email_address"}, {"FamilyName", "family_name"}, {"GivenName", "given_name"}, {"PhoneNumber", "phone_number"}, {"ReferenceID", "reference_id"}, {"SquareCustomerID", "square_customerI_id"}, {"UpdatedAt", "updated_at"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,325 @@
+/// Payment information used to analyze payment amounts, methods, and statuses.
+table 'gold fact_payment'
+	lineageTag: 45ad87b9-54d5-47be-9712-bb89297d7ebc
+
+	/// Unique key for each payment
+	column payment_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f27722a-48be-4876-bd41-2dc68d98fcfc
+		summarizeBy: count
+		sourceColumn: payment_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the related order
+	column order_key
+		dataType: int64
+		formatString: 0
+		lineageTag: b2a21513-e171-4abc-95ab-7fc39b57a68e
+		summarizeBy: count
+		sourceColumn: order_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the payment date
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: f3fbf28e-5aa7-47c1-8494-c74b44534634
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the customer
+	column customer_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 88218d25-499e-4e71-b8d8-d92d2c115bc7
+		summarizeBy: none
+		sourceColumn: customer_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the payment location
+	column location_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 49b6072d-1544-4ad6-bb7d-44e5d94d07c3
+		summarizeBy: none
+		sourceColumn: location_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique payment id from Square
+	column square_payment_id
+		dataType: string
+		lineageTag: 56aaccdb-2093-40a3-ac79-b7881e97c8d9
+		summarizeBy: none
+		sourceColumn: square_payment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique order id from Square
+	column square_order_id
+		dataType: string
+		lineageTag: 26bbaa7d-6360-45c5-bd6b-ecf90c57c4a3
+		summarizeBy: none
+		sourceColumn: square_order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique customer ID from Square
+	column square_customer_id
+		dataType: string
+		lineageTag: 620f51b7-517a-48bd-9721-ea6e94ee1f19
+		summarizeBy: none
+		sourceColumn: square_customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Payment amount
+	column amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 9adfcb10-2f86-4cd1-8b25-73673c034fd9
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Currency of the payment
+	column currency
+		dataType: string
+		lineageTag: 47eb5f18-ca2e-482e-a643-838af0bf55e4
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Total payment amount
+	column total_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 7afe6ccf-38dd-4066-a6a6-48873dac4f77
+		summarizeBy: sum
+		sourceColumn: total_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Currency of the total payment
+	column total_currency
+		dataType: string
+		lineageTag: 0d4d8328-9dd2-420f-bfdf-bb0d01ae9ac2
+		summarizeBy: none
+		sourceColumn: total_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Current status of the payment
+	column payment_status
+		dataType: string
+		lineageTag: 26a45c4f-928a-4b75-88b5-ea2d2bdf2574
+		summarizeBy: none
+		sourceColumn: payment_status
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Type of payment source
+	column payment_source_type
+		dataType: string
+		lineageTag: 4b7d73fd-55ff-4576-82b1-5359e005d75a
+		summarizeBy: none
+		sourceColumn: payment_source_type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the payment was created
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ad1ccd66-7e84-4cb9-92df-833dd36faa3c
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: 389a3749-7e01-4dda-8008-3b90a791f429
+			defaultHierarchy: LocalDateTable_8168823b-d6fa-4e9b-b168-06ca9c55ac3f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the payment was last updated
+	column updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 76a1383f-a9ce-4475-abcc-93e7c6b92772
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		variation Variation
+			isDefault
+			relationship: d4c90295-143d-4b65-bf69-8a5d043a98d1
+			defaultHierarchy: LocalDateTable_0bfe8b14-eae1-47ad-958d-b456d044ede9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Receipt number for the payment
+	column receipt_number
+		dataType: string
+		lineageTag: 4048c70e-caf1-4394-83ec-16096d7ff85b
+		summarizeBy: none
+		sourceColumn: receipt_number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// External payment source
+	column external_source
+		dataType: string
+		lineageTag: b5d67fec-e732-4566-bc6b-7189170b171c
+		summarizeBy: none
+		sourceColumn: external_source
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Type of external payment
+	column external_type
+		dataType: string
+		lineageTag: 44335001-13ca-49f0-8dae-ab0fb911ac71
+		summarizeBy: none
+		sourceColumn: external_type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Brand of the payment card
+	column card_brand
+		dataType: string
+		lineageTag: 07682eda-a114-445e-97d1-20d3e4f2b85b
+		summarizeBy: none
+		sourceColumn: card_brand
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Type of payment card
+	column card_type
+		dataType: string
+		lineageTag: 1499f78c-63ed-4f6f-b35c-8493a3997984
+		summarizeBy: none
+		sourceColumn: card_type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Last four digits of the payment card
+	column card_last_4
+		dataType: string
+		lineageTag: 2dbbb668-93e3-4fa2-adc7-3c9878a37b31
+		summarizeBy: none
+		sourceColumn: card_last_4
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Method used to enter the card
+	column card_entry_method
+		dataType: string
+		lineageTag: b34e8bde-0772-493c-b04d-0c13ef89ccea
+		summarizeBy: none
+		sourceColumn: card_entry_method
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Status of the card payment
+	column card_status
+		dataType: string
+		lineageTag: c89844c1-d7f7-48fa-abbf-96c04c890e99
+		summarizeBy: none
+		sourceColumn: card_status
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Address verification status
+	column avs_status
+		dataType: string
+		lineageTag: d1a0a8ce-75aa-428e-8eb5-cfd2b2cd4bb0
+		summarizeBy: none
+		sourceColumn: avs_status
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Card security verification status
+	column cvv_status
+		dataType: string
+		lineageTag: 6508b037-280d-4c49-be0e-9a56a8b3adfb
+		summarizeBy: none
+		sourceColumn: cvv_status
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Cash amount provided by the buyer
+	column cash_buyer_supplied_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 716492d5-bfaa-4f26-8cea-bc418f514908
+		summarizeBy: sum
+		sourceColumn: cash_buyer_supplied_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Cash change returned to the buyer
+	column cash_change_back_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: effb8b61-a5e8-4ec1-b7b2-aa7950b312d7
+		summarizeBy: sum
+		sourceColumn: cash_change_back_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Payment risk level
+	column risk_level
+		dataType: string
+		lineageTag: 7bd57816-9489-40ef-ae3d-3a5aed8c71c5
+		summarizeBy: none
+		sourceColumn: risk_level
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Application id used for the payment
+	column application_id
+		dataType: string
+		lineageTag: 4a23c853-ae8b-40bd-a152-fb1ee478f064
+		summarizeBy: none
+		sourceColumn: application_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Square product used for the payment
+	column square_product
+		dataType: string
+		lineageTag: ddb5dd6c-6722-4b6f-b920-8237b10163b0
+		summarizeBy: none
+		sourceColumn: square_product
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Payment record version token
+	column version_token
+		dataType: string
+		lineageTag: 92bc6342-1bbf-46b6-8bc4-0a518decf9cd
+		summarizeBy: none
+		sourceColumn: version_token
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold fact_payment' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ivxrdaxcdssudi2fda4ebtbpl4-2f32cyze2wru3k3u3jw4pig7ja.datawarehouse.fabric.microsoft.com", "restaurant_lh"),
+				    gold_fact_payment = Source{[Schema="gold",Item="fact_payment"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_fact_payment,{{"Amount", "amount"}, {"ApplicationID", "application_id"}, {"AVSStatus", "avs_status"}, {"CardBrand", "card_brand"}, {"CardEntryMethod", "card_entry_method"}, {"CardLast4", "card_last_4"}, {"CardStatus", "card_status"}, {"CardType", "card_type"}, {"CashBuyerSuppliedAmount", "cash_buyer_supplied_amount"}, {"CashChangeBackAmount", "cash_change_back_amount"}, {"CreatedAt", "created_at"}, {"Currency", "currency"}, {"CustomerKey", "customer_key"}, {"CVVStatus", "cvv_status"}, {"DateKey", "date_key"}, {"ExternalSource", "external_source"}, {"ExternalType", "external_type"}, {"LocationKey", "location_key"}, {"OrderKey", "order_key"}, {"PaymentKey", "payment_key"}, {"PaymentSourceType", "payment_source_type"}, {"PaymentStatus", "payment_status"}, {"ReceiptNumber", "receipt_number"}, {"RiskLevel", "risk_level"}, {"SquareCustomerID", "square_customer_id"}, {"SquareOrderID", "square_order_id"}, {"SquarePaymentID", "square_payment_id"}, {"SquareProduct", "square_product"}, {"TotalAmount", "total_amount"}, {"TotalCurrency", "total_currency"}, {"UpdatedAt", "updated_at"}, {"VersionToken", "version_token"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

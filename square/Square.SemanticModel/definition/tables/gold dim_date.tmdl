@@ -1,0 +1,180 @@
+/// Calendar dates used to analyze sales, orders, payments, and inventory over time.
+table 'gold dim_date'
+	lineageTag: 08ead19e-e32e-4aa8-813c-f2225175212e
+
+	/// Unique key for each calendar date
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 46cfb4ea-1ec3-41b4-9cb7-57cb6f269314
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Calendar date
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c53f90e2-61b9-46ae-8fb6-9a534d67b79d
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 8d452026-a44e-4f56-be48-ef0f8fa9739a
+			defaultHierarchy: LocalDateTable_21733318-c400-478c-86d3-a9ad01ce21dc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Year of the date
+	/// 
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: c2afa626-3fe3-46ca-bddc-016b396230dd
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Number of the quarter
+	column quarter_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 19fa7395-2e16-4bd7-8684-677b3cfa92b0
+		summarizeBy: sum
+		sourceColumn: quarter_number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Quarter of the year
+	column quarter
+		dataType: string
+		lineageTag: 115557f6-a67e-4973-ab6e-aa6197a8132a
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Number of the month
+	column month_number
+		dataType: int64
+		formatString: 0
+		lineageTag: c3c29cff-ee84-47c8-bc03-ad16e732933d
+		summarizeBy: sum
+		sourceColumn: month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Name of the month
+	column month_name
+		dataType: string
+		lineageTag: e9006995-8286-4cba-984a-6f6fec79c9b6
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Short name of the month
+	column month_short_name
+		dataType: string
+		lineageTag: 1350d4bd-d3f0-4336-a239-8df89ece223a
+		summarizeBy: none
+		sourceColumn: month_short_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Week number of the year
+	column week__of_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 276cdc44-cf6f-412b-a07d-ccb4cabe10c9
+		summarizeBy: sum
+		sourceColumn: week__of_year
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Day number within the month
+	column day_of_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 703774ef-419c-4026-9a4e-68895bb1560b
+		summarizeBy: sum
+		sourceColumn: day_of_month
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Name of the day
+	/// 
+	column day_name
+		dataType: string
+		lineageTag: d971dd57-40e2-417f-b8aa-b74463611102
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Short name of the day
+	column day_short_name
+		dataType: string
+		lineageTag: 5a819719-6bc5-44dd-a3c9-9dcd1e692d3b
+		summarizeBy: none
+		sourceColumn: day_short_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Number representing the day of the week
+	/// 
+	column day_of_week_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 6067cbfa-9791-42a2-98f0-342d052a30d0
+		summarizeBy: sum
+		sourceColumn: day_of_week_number
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicates whether the date is a weekend
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6c9fbe0d-8cef-4e09-ad40-9e338e174eb3
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Year and month of the date
+	column year_month
+		dataType: string
+		lineageTag: 403d0080-cbcb-4ff1-8eec-c99fcad394d7
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Numeric year and month value
+	column year_month_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e7cb127-4918-469a-af7b-187b34b9b277
+		summarizeBy: sum
+		sourceColumn: year_month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_date' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ivxrdaxcdssudi2fda4ebtbpl4-2f32cyze2wru3k3u3jw4pig7ja.datawarehouse.fabric.microsoft.com", "restaurant_lh"),
+				    gold_dim_date = Source{[Schema="gold",Item="dim_date"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_dim_date,{{"Date", "date"}, {"DateKey", "date_key"}, {"DayName", "day_name"}, {"DayOfMonth", "day_of_month"}, {"DayOfWeekNumber", "day_of_week_number"}, {"DayShortName", "day_short_name"}, {"IsWeekend", "is_weekend"}, {"MonthName", "month_name"}, {"MonthNumber", "month_number"}, {"MonthShortName", "month_short_name"}, {"Quarter", "quarter"}, {"QuarterNumber", "quarter_number"}, {"WeekOfYear", "week__of_year"}, {"Year", "year"}, {"YearMonth", "year_month"}, {"YearMonthNumber", "year_month_number"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

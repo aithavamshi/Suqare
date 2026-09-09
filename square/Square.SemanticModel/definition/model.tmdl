@@ -1,0 +1,40 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["gold fact_sales","gold fact_payment","gold fact_order","gold fact_inventory","gold dim_product","gold dim_location","gold dim_date","gold dim_customer","measures_"]
+
+ref table DateTableTemplate_d16438bb-71db-49ef-9e0e-b17fea61af38
+ref table 'gold fact_sales'
+ref table 'gold fact_payment'
+ref table LocalDateTable_8168823b-d6fa-4e9b-b168-06ca9c55ac3f
+ref table LocalDateTable_0bfe8b14-eae1-47ad-958d-b456d044ede9
+ref table 'gold fact_order'
+ref table LocalDateTable_2f8c2486-5022-4c47-8d30-9c0b0a2f7101
+ref table LocalDateTable_05c370bc-5fb3-4c24-b73c-d7709563dad9
+ref table LocalDateTable_c86a8150-28ee-48b9-b65f-cf19c45d5fa4
+ref table 'gold fact_inventory'
+ref table LocalDateTable_fbf3fd23-1e65-4dba-a1c0-b599625ab64c
+ref table LocalDateTable_5492193b-e718-4d5a-a291-9b7f7247a370
+ref table 'gold dim_product'
+ref table LocalDateTable_4bc95a5a-9ec9-4543-9e4d-4c2e857e503f
+ref table LocalDateTable_2b5be02f-237d-4ba3-a728-c8ec47578c58
+ref table 'gold dim_location'
+ref table LocalDateTable_8d602373-2b52-4387-b44f-8a17e36405bb
+ref table LocalDateTable_a16b225d-7e15-4fc7-a3bc-2f87a690d1c4
+ref table 'gold dim_date'
+ref table LocalDateTable_21733318-c400-478c-86d3-a9ad01ce21dc
+ref table 'gold dim_customer'
+ref table LocalDateTable_eec08734-00da-49f6-8b06-eacf37934c96
+ref table LocalDateTable_9158f51c-b742-41d3-8411-cffa174535dc
+ref table measures_
+
+ref cultureInfo en-US
+

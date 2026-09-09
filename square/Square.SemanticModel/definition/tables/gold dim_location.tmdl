@@ -1,0 +1,174 @@
+/// Business location information used to analyze activity by location.
+table 'gold dim_location'
+	lineageTag: 80101c7b-96cc-4cf6-9feb-b6cc70deb90e
+
+	/// Unique key for each location
+	column location_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 34b6f6bf-2977-4073-a8bf-c0befb470263
+		summarizeBy: none
+		sourceColumn: location_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique location id from Square
+	column square_location_id
+		dataType: string
+		lineageTag: 85c198a0-6905-46fb-b280-e33b53803b9c
+		summarizeBy: none
+		sourceColumn: square_location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Name of the business location
+	column location_name
+		dataType: string
+		lineageTag: c8897f17-110c-4cc0-a722-18a048a08a3b
+		summarizeBy: none
+		sourceColumn: location_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Name of the business
+	column business_name
+		dataType: string
+		lineageTag: 58894324-3313-477a-8ec3-5e8fc882e59d
+		summarizeBy: none
+		sourceColumn: business_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Current status of the location
+	column location_status
+		dataType: string
+		lineageTag: 092d8d18-946b-40a8-bf0e-ee7512dc3823
+		summarizeBy: none
+		sourceColumn: location_status
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Type of business location
+	column location_type
+		dataType: string
+		lineageTag: e374f2eb-4d59-478b-93a8-155c8442de24
+		summarizeBy: none
+		sourceColumn: location_type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Main street address of the location
+	column address_line1
+		dataType: string
+		lineageTag: 30b34393-eb7f-4ec3-88de-d0776e306c90
+		summarizeBy: none
+		sourceColumn: address_line1
+
+		annotation SummarizationSetBy = Automatic
+
+	/// City of the location
+	column city
+		dataType: string
+		lineageTag: c146e7c5-fb41-43d0-bdbe-fb27065f5040
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	/// State of the location
+	column state
+		dataType: string
+		lineageTag: 057d9339-958a-476f-bc30-f9f799f66e73
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Postal code of the location
+	column postal_code
+		dataType: string
+		lineageTag: a8de68c4-5c0b-4653-857d-968f447cac45
+		summarizeBy: none
+		sourceColumn: postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Country of the location
+	column country
+		dataType: string
+		lineageTag: b6eb4a1d-a818-4178-90df-264089cc6909
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Time zone of that location
+	column timezone
+		dataType: string
+		lineageTag: 5caf2700-aabb-4f61-9caf-f33625f73a8e
+		summarizeBy: none
+		sourceColumn: timezone
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Currency used at the location
+	column currency
+		dataType: string
+		lineageTag: 15002b38-0ab4-4866-9377-94a64f18a224
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Language used at the location
+	/// 
+	column language_code
+		dataType: string
+		lineageTag: 2777729d-b9b4-47e9-bbb8-7271234b3c15
+		summarizeBy: none
+		sourceColumn: language_code
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the location was created
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 904a0def-ee2b-4cef-be5e-18d9f48b65db
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: cad27cac-89e0-4d0d-a7d4-6b070008d504
+			defaultHierarchy: LocalDateTable_8d602373-2b52-4387-b44f-8a17e36405bb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the location data was loaded
+	column ingested_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0db3c6c8-18df-41f1-b78f-e72370e31c9e
+		summarizeBy: none
+		sourceColumn: ingested_at
+
+		variation Variation
+			isDefault
+			relationship: 9a837dcd-b5f6-4618-be4b-4f1706e5c42f
+			defaultHierarchy: LocalDateTable_a16b225d-7e15-4fc7-a3bc-2f87a690d1c4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_location' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ivxrdaxcdssudi2fda4ebtbpl4-2f32cyze2wru3k3u3jw4pig7ja.datawarehouse.fabric.microsoft.com", "restaurant_lh"),
+				    gold_dim_location = Source{[Schema="gold",Item="dim_location"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_dim_location,{{"AddressLine1", "address_line1"}, {"BusinessName", "business_name"}, {"City", "city"}, {"Country", "country"}, {"CreatedAt", "created_at"}, {"Currency", "currency"}, {"IngestedAt", "ingested_at"}, {"LanguageCode", "language_code"}, {"LocationKey", "location_key"}, {"LocationName", "location_name"}, {"LocationStatus", "location_status"}, {"LocationType", "location_type"}, {"PostalCode", "postal_code"}, {"SquareLocationID", "square_location_id"}, {"State", "state"}, {"Timezone", "timezone"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

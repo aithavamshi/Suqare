@@ -1,0 +1,137 @@
+/// Inventory snapshot information used to analyze product quantities by date and location.
+table 'gold fact_inventory'
+	lineageTag: 8e3ab1bb-c377-489b-a353-6e173ada6d2f
+
+	/// Unique key for each inventory record
+	column inventory_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e3ba10d-7cb7-48d9-95a8-5caa673f6dcd
+		summarizeBy: count
+		sourceColumn: inventory_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the inventory date
+	/// 
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: d20f0a7d-fad9-4808-b06a-cfcfca38ed05
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the product variation
+	/// 
+	column product_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 4dfd43e2-796a-4419-b41c-bb0ae34bb05e
+		summarizeBy: none
+		sourceColumn: product_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Key of the inventory location
+	column location_key
+		dataType: int64
+		formatString: 0
+		lineageTag: f96d9b22-ea16-47b7-8320-8f621f9f43d0
+		summarizeBy: none
+		sourceColumn: location_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique product variation id from Square
+	column square_variation_id
+		dataType: string
+		lineageTag: dbdf8452-4ede-4f18-8c50-b026fee8c9a0
+		summarizeBy: none
+		sourceColumn: square_variation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique location id from Square
+	column square_location_id
+		dataType: string
+		lineageTag: eb893f4e-027c-42de-982b-f690f996abdb
+		summarizeBy: none
+		sourceColumn: square_location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Type of catalog object
+	column catalog_object_type
+		dataType: string
+		lineageTag: 63807d56-f691-49b5-9b1c-5b557136beec
+		summarizeBy: none
+		sourceColumn: catalog_object_type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Current inventory state
+	column inventory_state
+		dataType: string
+		lineageTag: c6b141c5-9e00-4408-9332-962e71e69780
+		summarizeBy: none
+		sourceColumn: inventory_state
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Quantity available in inventory
+	/// 
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f306d91-7268-45a7-b7e9-81a90c795a79
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date of the inventory snapshot
+	column inventory_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e5b235f5-5ac0-4d8e-9f2a-ca997ec77ce4
+		summarizeBy: none
+		sourceColumn: inventory_date
+
+		variation Variation
+			isDefault
+			relationship: c33702b3-dfb8-4c61-bdf8-5a1bedb15c55
+			defaultHierarchy: LocalDateTable_fbf3fd23-1e65-4dba-a1c0-b599625ab64c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Date and time the inventory quantity was calculated
+	column calculated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 44c7065a-c683-4597-b56d-f5f69d717988
+		summarizeBy: none
+		sourceColumn: calculated_at
+
+		variation Variation
+			isDefault
+			relationship: afd65066-9256-499e-8f34-2e48c00bd3d6
+			defaultHierarchy: LocalDateTable_5492193b-e718-4d5a-a291-9b7f7247a370.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold fact_inventory' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ivxrdaxcdssudi2fda4ebtbpl4-2f32cyze2wru3k3u3jw4pig7ja.datawarehouse.fabric.microsoft.com", "restaurant_lh"),
+				    gold_fact_inventory = Source{[Schema="gold",Item="fact_inventory"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_fact_inventory,{{"CalculatedAt", "calculated_at"}, {"CatalogObjectType", "catalog_object_type"}, {"DateKey", "date_key"}, {"InventoryDate", "inventory_date"}, {"InventoryKey", "inventory_key"}, {"InventoryState", "inventory_state"}, {"LocationKey", "location_key"}, {"ProductKey", "product_key"}, {"Quantity", "quantity"}, {"SquareLocationID", "square_location_id"}, {"SquareVariationID", "square_variation_id"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

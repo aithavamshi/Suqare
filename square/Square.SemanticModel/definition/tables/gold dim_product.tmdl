@@ -1,0 +1,239 @@
+/// Product and product variation information used to analyze sales and inventory.
+table 'gold dim_product'
+	lineageTag: 88d6e2b4-4bee-4d8e-b1c3-e673c0b272f1
+
+	/// Unique key for each product variation
+	column product_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d9ca0e5-f32a-44d4-a690-fadb80e765a8
+		summarizeBy: none
+		sourceColumn: product_key
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique product variation ID from Square
+	column square_variation_id
+		dataType: string
+		lineageTag: 4e308b7f-3182-42d2-a96c-2b08033f98ee
+		summarizeBy: none
+		sourceColumn: square_variation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Unique item id from Square
+	column square_item_id
+		dataType: string
+		lineageTag: cf068f45-cf92-42f3-a540-c4a8fca88e02
+		summarizeBy: none
+		sourceColumn: square_item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Name of the product
+	column itemname
+		dataType: string
+		lineageTag: 74c76712-7356-4618-b52b-8822c0833a3b
+		summarizeBy: none
+		sourceColumn: itemname
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Description of the product
+	column description
+		dataType: string
+		lineageTag: 23b09c6b-eaeb-4e90-b701-edefa9c61dc0
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Type of the each product
+	column product_type
+		dataType: string
+		lineageTag: 83e13e03-d4aa-424e-9892-5ccb352d2987
+		summarizeBy: none
+		sourceColumn: product_type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Name of the product variation
+	column variation_name
+		dataType: string
+		lineageTag: 5892e018-3d39-498f-9990-573366f250eb
+		summarizeBy: none
+		sourceColumn: variation_name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Stock keeping unit of the product
+	column sku
+		dataType: string
+		lineageTag: decd8f02-8be3-4703-8ddb-5e54c8ed7139
+		summarizeBy: none
+		sourceColumn: sku
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Display order of the product variation
+	column ordinal
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e5ed380-5460-47d2-8aea-645298a3889e
+		summarizeBy: sum
+		sourceColumn: ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Selling price of the product variation
+	/// 
+	column price_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 0642346e-3dd5-4733-bb31-50861c4c41b7
+		summarizeBy: sum
+		sourceColumn: price_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Currency used for the product price
+	column currency
+		dataType: string
+		lineageTag: 639a84f7-a45e-4364-83e5-cc5140883d9e
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Pricing method of the product
+	column pricing_type
+		dataType: string
+		lineageTag: 824a73ea-79c9-4b6e-aeeb-2288884139eb
+		summarizeBy: none
+		sourceColumn: pricing_type
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicates whether the product can be sold
+	column sellable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 29d77f66-a16c-478f-a016-1c2205f69b8e
+		summarizeBy: none
+		sourceColumn: sellable
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicates whether inventory is tracked for the product
+	column stockable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5d610b3b-f25c-4d72-a1fc-a0bfc67551bb
+		summarizeBy: none
+		sourceColumn: stockable
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicates whether the product item is archived
+	column isarchived
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 393c0399-0137-4e17-88f7-7159d44a0fdf
+		summarizeBy: none
+		sourceColumn: isarchived
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicates whether the product item is taxable
+	column istaxable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2ba4ce3d-8ff9-49a1-80cd-8a586023a244
+		summarizeBy: none
+		sourceColumn: istaxable
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicates whether the product variation is deleted
+	column isvariation_deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 74452ad9-6ea2-4612-bfad-c0ced7366828
+		summarizeBy: none
+		sourceColumn: isvariation_deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicates whether the product item is deleted
+	column isitem_deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e3702422-e4bb-4c3f-b95a-8abd472e0a0e
+		summarizeBy: none
+		sourceColumn: isitem_deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Indicates whether the variation is available at all locations
+	column present_at_all_locations
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 83af5131-b3c1-4ded-ab5f-5a04657615e3
+		summarizeBy: none
+		sourceColumn: present_at_all_locations
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the product variation was created
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 17eea411-a99f-403e-b6c7-c0e7160a01be
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: f8474cbd-c2e0-46bd-854c-ab8685e10fda
+			defaultHierarchy: LocalDateTable_4bc95a5a-9ec9-4543-9e4d-4c2e857e503f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Date and time the product variation was last updated
+	column updated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 896d28f3-69f0-453f-8f2e-a3d9ea0f6300
+		summarizeBy: none
+		sourceColumn: updated_at
+
+		variation Variation
+			isDefault
+			relationship: e668f398-4776-4927-8cf4-59aa2bf569cd
+			defaultHierarchy: LocalDateTable_2b5be02f-237d-4ba3-a728-c8ec47578c58.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Product record version
+	/// 
+	column version
+		dataType: int64
+		formatString: 0
+		lineageTag: 14532b19-f9e6-4ff7-9ba3-22a0ff893ed5
+		summarizeBy: sum
+		sourceColumn: version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_product' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ivxrdaxcdssudi2fda4ebtbpl4-2f32cyze2wru3k3u3jw4pig7ja.datawarehouse.fabric.microsoft.com", "restaurant_lh"),
+				    gold_dim_product = Source{[Schema="gold",Item="dim_product"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(gold_dim_product,{{"CreatedAt", "created_at"}, {"Currency", "currency"}, {"Description", "description"}, {"IsArchived", "isarchived"}, {"IsItemDeleted", "isitem_deleted"}, {"IsTaxable", "istaxable"}, {"IsVariationDeleted", "isvariation_deleted"}, {"ItemName", "itemname"}, {"Ordinal", "ordinal"}, {"PresentAtAllLocations", "present_at_all_locations"}, {"PriceAmount", "price_amount"}, {"PricingType", "pricing_type"}, {"ProductKey", "product_key"}, {"ProductType", "product_type"}, {"Sellable", "sellable"}, {"SKU", "sku"}, {"SquareItemID", "square_item_id"}, {"SquareVariationID", "square_variation_id"}, {"Stockable", "stockable"}, {"UpdatedAt", "updated_at"}, {"VariationName", "variation_name"}, {"Version", "version"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

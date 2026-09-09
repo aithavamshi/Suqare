@@ -1,0 +1,344 @@
+table measures_
+	lineageTag: 56fec17b-969a-4aeb-a0a3-ff521c94f2ba
+
+	/// Total sales amount
+	measure total_sales =
+			
+			DIVIDE(
+			    SUM('gold fact_sales'[total_amount]),
+			    100
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6d5b5ecd-768a-48d0-b276-b190d7e53af5
+
+	/// Total number of orders
+	measure total_orders =
+			
+			DISTINCTCOUNT('gold fact_order'[square_order_id])
+		formatString: 0
+		lineageTag: b4559aa0-b4fe-4188-bee3-69709bb11ac0
+
+	/// Total quantity of products sold
+	measure total_quantity_sold =
+			
+			SUM('gold fact_sales'[quantity])
+		lineageTag: fd7f3583-ced5-4f51-8cc3-d80f68a37951
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Average sales amount per order
+	measure average_order_value =
+			
+			DIVIDE(
+			    [total_sales],
+			    [total_orders],
+			    0
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 87577470-38d2-49d2-b137-7b6dd8b29075
+
+	/// Total number of customers
+	measure total_customers =
+			
+			DISTINCTCOUNT(
+			    'gold dim_customer'[customer_key]
+			)
+		formatString: 0
+		lineageTag: 18a1c550-d0a8-46aa-af7e-d13be230181a
+
+	/// Number of customers who placed an order
+	measure customers_with_orders =
+			
+			DISTINCTCOUNT(
+			    'gold fact_order'[customer_key]
+			)
+		formatString: 0
+		lineageTag: b07de209-e1c8-4134-bf97-7cfc45ebfbbc
+
+	/// Number of customers who placed more than one order
+	measure repeat_customers =
+			
+			COUNTROWS(
+			    FILTER(
+			        VALUES('gold fact_order'[customer_key]),
+			        CALCULATE(
+			            DISTINCTCOUNT(
+			                'gold fact_order'[order_key]
+			            )
+			        ) > 1
+			    )
+			) +0
+		formatString: 0
+		lineageTag: 91ea56fc-e0bd-4c75-8be2-de2f95a4e80c
+
+	/// Average sales amount per customer
+	measure sales_per_customer =
+			
+			DIVIDE(
+			    [total_sales],
+			    [customers_with_orders],
+			    BLANK()
+			)
+		lineageTag: a48bb747-6bae-4f1e-80e3-d23b1a6c75f1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Total number of payments
+	measure total_payments =
+			
+			DISTINCTCOUNT(
+			    'gold fact_payment'[payment_key]
+			)
+		formatString: 0
+		lineageTag: d297da1f-f5c1-4712-874a-6286d99ba97d
+
+	/// Total amount received through payments
+	measure total_payment_amount =
+			
+			SUM(
+			    'gold fact_payment'[amount]
+			)
+		formatString: 0
+		lineageTag: 2e9f3e03-0fb4-4c77-ae1a-13b52a77ae15
+
+	/// Average amount per payment
+	measure average_payment_value =
+			
+			DIVIDE(
+			    [total_payment_amount],
+			    [total_payments],
+			    BLANK()
+			)
+		lineageTag: d3f86da4-9bba-42cf-8815-25715bd36e1b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Number of completed payments
+	measure completed_payments =
+			
+			CALCULATE(
+			    [total_payments],
+			    'gold fact_payment'[payment_status] = "COMPLETED"
+			)
+		formatString: 0
+		lineageTag: 94f5d6c6-bbce-41fc-9674-58849a89d219
+
+	/// Percentage of payments that are completed
+	measure payment_success_rate =
+			
+			DIVIDE(
+			    [completed_payments],
+			    [total_payments],
+			    BLANK()
+			)
+		lineageTag: 9949dc82-a8d6-4d31-b756-0a67be55d09a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Total quantity currently in inventory
+	measure total_inventory_quantity =
+			
+			SUM(
+			    'gold fact_inventory'[quantity]
+			)
+		formatString: 0
+		lineageTag: d1feeb95-5b4b-4fbd-a10e-d641990fa49c
+
+	/// Number of products with available inventory
+	measure 'products_in _stock' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(
+			        'gold fact_inventory'[product_key]
+			    ),
+			    FILTER(
+			        'gold fact_inventory',
+			        'gold fact_inventory'[quantity] > 0
+			    )
+			)
+		formatString: 0
+		lineageTag: 57863710-0eb0-43c5-b1e2-8bce33f5255a
+
+	/// Number of products with no available inventory
+	measure out_of_stock_products =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(
+			        'gold fact_inventory'[product_key]
+			    ),
+			    FILTER(
+			        'gold fact_inventory',
+			        'gold fact_inventory'[quantity] <= 0
+			    )
+			) +0
+		formatString: 0
+		lineageTag: 1f099932-a32e-4cd7-b4b5-f725bbe90367
+
+	/// Average inventory quantity per product
+	measure average_inventory_quantity =
+			
+			AVERAGEX(
+			    VALUES(
+			        'gold fact_inventory'[product_key]
+			    ),
+			    CALCULATE(
+			        SUM(
+			            'gold fact_inventory'[quantity]
+			        )
+			    )
+			)
+		lineageTag: 23f4d1e2-1059-4e92-bb5d-6e824a420af0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Highest inventory quantity for a product
+	measure maximum_inventory_quantity =
+			
+			MAX(
+			    'gold fact_inventory'[quantity]
+			)
+		formatString: 0
+		lineageTag: 5df55b74-ef90-4f97-bf67-d15b4dfc46bd
+
+	/// Lowest inventory quantity for a product
+	measure minimum_inventory_quantity =
+			
+			MIN(
+			    'gold fact_inventory'[quantity]
+			)
+		formatString: 0
+		lineageTag: 4d347ab7-8de1-4446-afc0-9952c14e2d89
+
+	/// Average number of items sold per order
+	measure items_per_order =
+			
+			DIVIDE(
+			    [total_quantity_sold],
+			    [total_orders],
+			    BLANK()
+			)
+		lineageTag: c908abab-882d-4917-afb4-2ab05e4579a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Average number of orders per purchasing customer
+	measure customer_purchase_frequency =
+			
+			DIVIDE(
+			    [total_orders],
+			    [customers_with_orders],
+			    BLANK()
+			)
+		lineageTag: 313f5e94-bee1-40c1-9077-82644352b4c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Average sales amount per product
+	measure sales_per_product =
+			
+			DIVIDE(
+			    [total_sales],
+			    DISTINCTCOUNT('gold fact_sales'[product_key]),
+			    BLANK()
+			)
+		lineageTag: 79a87989-3552-47b3-8bb6-377fe59e1618
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Total sales amount for each day
+	measure daily_sales =
+			
+			DIVIDE(
+			    [total_sales],
+			    DISTINCTCOUNT('gold fact_sales'[date_key]),
+			    BLANK()
+			)
+		lineageTag: fa9e2044-ca06-436c-a4e7-4531c885605d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Percentage of customers who placed more than one order
+	measure repeat_customer_rate =
+			
+			DIVIDE(
+			    [repeat_customers],
+			    [customers_with_orders],
+			    BLANK()
+			) +0
+		lineageTag: 4f94210f-c234-4063-8137-7c2680b46b65
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Total sales amount from the previous day
+	measure previous_day_sales =
+			
+			CALCULATE(
+			    [total_sales],
+			    DATEADD(
+			        'gold dim_date'[date],
+			        -1,
+			        DAY
+			    )
+			)
+		lineageTag: 6f2d52cc-aaa5-465b-9098-37b0f6c480b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Percentage change in sales compared with the previous day
+	measure daily_sales_growth_% =
+			
+			DIVIDE(
+			    [total_sales] - [previous_day_sales],
+			    [previous_day_sales],
+			    BLANK()
+			)
+		lineageTag: 166f99e3-2e14-47f7-ac0a-a91f843dfc87
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Total sales amount from the previous month
+	measure previous_month_sales =
+			
+			CALCULATE(
+			    [total_sales],
+			    DATEADD(
+			        'gold dim_date'[date],
+			        -1,
+			        MONTH
+			    )
+			)
+		lineageTag: f9d4ca70-cf78-43b3-b051-bcd198c6a534
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Percentage change in sales compared with the previous month
+	measure monthly_sales_growth_% =
+			
+			DIVIDE(
+			    [total_sales] - [previous_month_sales],
+			    [previous_month_sales],
+			    BLANK()
+			)
+		lineageTag: a906703a-5b83-4612-ae8c-ca91cf4457a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: string
+		lineageTag: f58ee438-8b7c-4e11-84db-4331811f0137
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition measures_ = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

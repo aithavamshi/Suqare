@@ -1,0 +1,123 @@
+relationship 389a3749-7e01-4dda-8008-3b90a791f429
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_payment'.created_at
+	toColumn: LocalDateTable_8168823b-d6fa-4e9b-b168-06ca9c55ac3f.Date
+
+relationship d4c90295-143d-4b65-bf69-8a5d043a98d1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_payment'.updated_at
+	toColumn: LocalDateTable_0bfe8b14-eae1-47ad-958d-b456d044ede9.Date
+
+relationship 3ffdf89a-56ee-473b-a6e0-e26e7f53d66c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_order'.created_at
+	toColumn: LocalDateTable_2f8c2486-5022-4c47-8d30-9c0b0a2f7101.Date
+
+relationship 684f4527-0f14-40d6-ad0d-446b6893591f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_order'.updated_at
+	toColumn: LocalDateTable_05c370bc-5fb3-4c24-b73c-d7709563dad9.Date
+
+relationship b491a0c7-3d27-48de-956b-6a56f2c23c37
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_order'.closed_at
+	toColumn: LocalDateTable_c86a8150-28ee-48b9-b65f-cf19c45d5fa4.Date
+
+relationship c33702b3-dfb8-4c61-bdf8-5a1bedb15c55
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_inventory'.inventory_date
+	toColumn: LocalDateTable_fbf3fd23-1e65-4dba-a1c0-b599625ab64c.Date
+
+relationship afd65066-9256-499e-8f34-2e48c00bd3d6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold fact_inventory'.calculated_at
+	toColumn: LocalDateTable_5492193b-e718-4d5a-a291-9b7f7247a370.Date
+
+relationship f8474cbd-c2e0-46bd-854c-ab8685e10fda
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_product'.created_at
+	toColumn: LocalDateTable_4bc95a5a-9ec9-4543-9e4d-4c2e857e503f.Date
+
+relationship e668f398-4776-4927-8cf4-59aa2bf569cd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_product'.updated_at
+	toColumn: LocalDateTable_2b5be02f-237d-4ba3-a728-c8ec47578c58.Date
+
+relationship cad27cac-89e0-4d0d-a7d4-6b070008d504
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_location'.created_at
+	toColumn: LocalDateTable_8d602373-2b52-4387-b44f-8a17e36405bb.Date
+
+relationship 9a837dcd-b5f6-4618-be4b-4f1706e5c42f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_location'.ingested_at
+	toColumn: LocalDateTable_a16b225d-7e15-4fc7-a3bc-2f87a690d1c4.Date
+
+relationship 8d452026-a44e-4f56-be48-ef0f8fa9739a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_date'.date
+	toColumn: LocalDateTable_21733318-c400-478c-86d3-a9ad01ce21dc.Date
+
+relationship 797780b8-f37c-49b7-8ec5-f405ef5ecfcb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_customer'.created_at
+	toColumn: LocalDateTable_eec08734-00da-49f6-8b06-eacf37934c96.Date
+
+relationship d5401304-f19c-45d8-ba50-a0a874e7e134
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_customer'.updated_at
+	toColumn: LocalDateTable_9158f51c-b742-41d3-8411-cffa174535dc.Date
+
+relationship AutoDetected_c129182a-4764-4f34-8ace-b54548494b6d
+	fromColumn: 'gold fact_sales'.date_key
+	toColumn: 'gold dim_date'.date_key
+
+relationship AutoDetected_bd23e779-0814-4cef-bd95-8c842208ee31
+	fromColumn: 'gold fact_payment'.date_key
+	toColumn: 'gold dim_date'.date_key
+
+relationship AutoDetected_db2528d7-fe92-4d7f-acbc-13e5a40a2e53
+	fromColumn: 'gold fact_inventory'.date_key
+	toColumn: 'gold dim_date'.date_key
+
+relationship AutoDetected_9d7e7ef3-3dde-4672-b385-c2f1243e0864
+	fromColumn: 'gold fact_sales'.location_key
+	toColumn: 'gold dim_location'.location_key
+
+relationship AutoDetected_7af34edc-a712-4fc9-879b-74d273d99f65
+	fromColumn: 'gold fact_payment'.location_key
+	toColumn: 'gold dim_location'.location_key
+
+relationship AutoDetected_f850b88d-ae0c-4cd0-8331-931be0958223
+	fromColumn: 'gold fact_order'.location_key
+	toColumn: 'gold dim_location'.location_key
+
+relationship AutoDetected_4e11c7f4-f467-407b-a06a-04e644dbe8c9
+	fromColumn: 'gold fact_inventory'.location_key
+	toColumn: 'gold dim_location'.location_key
+
+relationship AutoDetected_b4509959-b8bf-4fbf-aa27-dd040ecd3e8d
+	fromColumn: 'gold fact_sales'.square_variation_id
+	toColumn: 'gold dim_product'.square_variation_id
+
+relationship bf8ca53b-cdf0-2f5c-eff2-bea6ead11551
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'gold fact_inventory'.product_key
+	toColumn: 'gold dim_product'.product_key
+
+relationship 7fac5b9f-b73c-5ae8-c7f0-0253656ed05f
+	fromColumn: 'gold fact_payment'.customer_key
+	toColumn: 'gold dim_customer'.customer_key
+
+relationship 9382522d-b4c7-43e4-f783-8cf2ed814743
+	fromColumn: 'gold fact_order'.customer_key
+	toColumn: 'gold dim_customer'.customer_key
+
+relationship 0678000b-292e-5127-0296-ccf2fa56afac
+	fromColumn: 'gold fact_sales'.customer_key
+	toColumn: 'gold dim_customer'.customer_key
+
+relationship d7f359b7-5a62-8e38-45d5-31f383af933a
+	fromColumn: 'gold fact_order'.date_key
+	toColumn: 'gold dim_date'.date_key
+
