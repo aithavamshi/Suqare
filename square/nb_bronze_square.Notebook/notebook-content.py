@@ -30,7 +30,7 @@ import requests
 import json
 from datetime import datetime, timezone
 from pathlib import Path  
-#testing  ffggg
+
 
 # ============================================================
 # SQUARE CONFIGURATION
