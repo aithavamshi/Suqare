@@ -1,6 +1,10 @@
 name: Deploy DEV to TEST
 
 on:
+  push:
+    branches:
+      - main
+
   workflow_dispatch:
 
 jobs:
