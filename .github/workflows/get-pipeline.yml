@@ -1,0 +1,30 @@
+name: Get Fabric Deployment Pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate and fetch pipeline
+        run: |
+          TOKEN=$(curl -s -X POST \
+            "https://login.microsoftonline.com/${{ secrets.FABRIC_TENANT_ID }}/oauth2/v2.0/token" \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "grant_type=client_credentials" \
+            -d "client_id=${{ secrets.FABRIC_CLIENT_ID }}" \
+            -d "client_secret=${{ secrets.FABRIC_CLIENT_SECRET }}" \
+            -d "scope=https://api.fabric.microsoft.com/.default" \
+            | grep -o '"access_token":"[^"]*"' | cut -d'"' -f4)
+
+          if [ -z "$TOKEN" ]; then
+            echo "Failed to get access token"
+            exit 1
+          fi
+
+          echo "Token acquired, calling Fabric API..."
+
+          curl -s -X GET \
+            "https://api.fabric.microsoft.com/v1/deploymentPipelines/af5f0bda-f600-42d0-b491-74098cea311e" \
+            -H "Authorization: Bearer $TOKEN" | jq .
