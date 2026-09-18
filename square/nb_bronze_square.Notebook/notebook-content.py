@@ -36,6 +36,8 @@ print("Hello")
 print("This is my new change")
 print("Hii")
 
+print("this is the change")
+
 #testing in the new branch
 # ============================================================
 # SQUARE CONFIGURATION
