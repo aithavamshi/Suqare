@@ -34,6 +34,9 @@ from pathlib import Path
 print("Fabric CI/CD Demo - Version 2")
 print("Hello")
 print("This is my new change")
+
+print("Hello This is the my final test new change")
+
 #testing in the new branch
 # ============================================================
 # SQUARE CONFIGURATION
