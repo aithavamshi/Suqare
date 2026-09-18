@@ -1,0 +1,68 @@
+name: Deploy TEST to PROD
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Authenticate, deploy, and poll
+        run: |
+          PIPELINE_ID="af5f0bda-f600-42d0-b491-74098cea311e"
+          TEST_STAGE_ID="622a205c-0e1e-4235-90b1-e6fee8b36115"
+          PROD_STAGE_ID="e72fb94b-7b7f-4c74-926f-f6b9298e6edd"
+
+          echo "Getting access token..."
+          TOKEN=$(curl -s -X POST \
+            "https://login.microsoftonline.com/${{ secrets.FABRIC_TENANT_ID }}/oauth2/v2.0/token" \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "grant_type=client_credentials" \
+            -d "client_id=${{ secrets.FABRIC_CLIENT_ID }}" \
+            -d "client_secret=${{ secrets.FABRIC_CLIENT_SECRET }}" \
+            -d "scope=https://api.fabric.microsoft.com/.default" \
+            | grep -o '"access_token":"[^"]*"' | cut -d'"' -f4)
+
+          if [ -z "$TOKEN" ]; then
+            echo "Failed to get access token"
+            exit 1
+          fi
+
+          echo "Starting deployment: TEST -> PROD..."
+          RESPONSE_HEADERS=$(mktemp)
+          curl -s -D "$RESPONSE_HEADERS" -o /tmp/deploy_body.json -X POST \
+            "https://api.fabric.microsoft.com/v1/deploymentPipelines/$PIPELINE_ID/deploy" \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"sourceStageId\": \"$TEST_STAGE_ID\", \"targetStageId\": \"$PROD_STAGE_ID\", \"note\": \"Approved production deployment via GitHub Actions\"}"
+
+          cat /tmp/deploy_body.json
+
+          OPERATION_URL=$(grep -i "^location:" "$RESPONSE_HEADERS" | awk '{print $2}' | tr -d '\r')
+
+          if [ -z "$OPERATION_URL" ]; then
+            echo "No operation URL returned — deployment may have failed to start."
+            exit 1
+          fi
+
+          echo "Polling operation: $OPERATION_URL"
+
+          for i in $(seq 1 30); do
+            sleep 5
+            STATUS_RESPONSE=$(curl -s -X GET "$OPERATION_URL" -H "Authorization: Bearer $TOKEN")
+            STATUS=$(echo "$STATUS_RESPONSE" | grep -o '"status":"[^"]*"' | cut -d'"' -f4)
+            echo "Attempt $i: status = $STATUS"
+
+            if [ "$STATUS" == "Succeeded" ]; then
+              echo "Deployment succeeded!"
+              exit 0
+            elif [ "$STATUS" == "Failed" ]; then
+              echo "Deployment failed:"
+              echo "$STATUS_RESPONSE"
+              exit 1
+            fi
+          done
+
+          echo "Timed out waiting for deployment to complete."
+          exit 1
